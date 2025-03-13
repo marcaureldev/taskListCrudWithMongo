@@ -5,9 +5,9 @@ const Task = require("../models/Task");
 // Créer une tâche
 router.post('/', async (req, res) => {
     try {
-        const service = new Task(req.body);
-        await service.save();
-        res.status(201).json(service);
+        const task = new Task(req.body);
+        await task.save();
+        res.status(201).json(task);
     } catch (err) {
         res.status(400).json({ error: err.message });
     }
