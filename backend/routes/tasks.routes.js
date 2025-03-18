@@ -17,24 +17,24 @@ router.post('/', async (req, res) => {
 // Lire toutes les tâches
 router.get('/', async (req, res) => {
     const tasks = await Task.find();
-    res.json(tasks);
+    res.json({data: tasks});
 });
 
-// Lire tous les tâches
+// Lire une tâche spécifique
 router.get('/:id', async (req, res) => {
-    const task = await Task.findById(req.params.createdAt);
+    const task = await Task.findById(req.params.id);
     res.json(task);
 });
 
 // Mettre à jour une tâche
 router.put('/:id', async (req, res) => {
-    const task = await Task.findByIdAndUpdate(req.params.createdAt, req.body, { new: true });
+    const task = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.json(task);
 });
 
 // Supprimer une tâche
 router.delete('/:id', async (req, res) => {
-    await Task.findByIdAndDelete(req.params.createdAt);
+    await Task.findByIdAndDelete(req.params.id);
     res.json({ message: "Tâche supprimé" });
 });
 
